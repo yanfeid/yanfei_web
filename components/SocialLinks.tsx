@@ -6,12 +6,12 @@ import Link from "next/link";
 
 const socialLinks = [
   {
-    href: "https://linkedin.com/in/yanfei-dai",
+    href: "https://linkedin.com/in/yanfdai",
     icon: Linkedin,
     label: "LinkedIn",
   },
   {
-    href: "https://github.com/yanfei-dai",
+    href: "https://github.com/yanfdai",
     icon: Github,
     label: "GitHub",
   },

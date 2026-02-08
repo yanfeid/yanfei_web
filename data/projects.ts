@@ -12,57 +12,53 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "llm-rag-system",
-    title: "Enterprise RAG System",
+    id: "shopping-feed-recsys",
+    title: "Shopping Feed Recommendation System",
     description:
-      "Production-ready Retrieval-Augmented Generation system for enterprise document search and Q&A.",
+      "Industrial-grade recommendation pipeline at Fintech with two-tower retrieval and fine-ranking, directly integrated with ranking and auction systems.",
     longDescription:
-      "Built a scalable RAG system that processes millions of documents, using hybrid search (dense + sparse retrieval) and custom embedding models for domain-specific knowledge.",
-    technologies: ["Python", "LangChain", "Pinecone", "FastAPI", "React", "Docker"],
-    githubUrl: "https://github.com/yanfei-dai/enterprise-rag",
+      "Complete end-to-end recommendation system from candidate generation to fine-rank. Addressed core RecSys challenges including delayed-feedback bias and class-imbalance. Feature Store integration demonstrates MLOps maturity with real business value loop.",
+    technologies: ["Python", "TensorFlow", "Spark", "Feature Store", "Two-Tower", "Fine-Rank"],
     featured: true,
   },
   {
-    id: "distributed-training",
-    title: "Distributed ML Training Framework",
+    id: "delayed-feedback-cvr",
+    title: "Delayed-Feedback CVR Modeling",
     description:
-      "Custom distributed training framework for large-scale model training across GPU clusters.",
+      "Systematic solution for conversion delay bias in ads ranking - a core challenge in advertising recommendation systems.",
     longDescription:
-      "Implemented efficient data parallel and model parallel training strategies with custom gradient synchronization and checkpointing.",
-    technologies: ["PyTorch", "CUDA", "Ray", "NCCL", "Kubernetes"],
-    githubUrl: "https://github.com/yanfei-dai/distributed-ml",
+      "Tackled the fundamental problem of label bias caused by conversion delays. Systematically compared multiple solutions including importance weighting and survival analysis. Built reproducible experiment framework with direct guidance for ads ranking systems.",
+    technologies: ["Python", "PyTorch", "Survival Analysis", "Importance Weighting", "Ads Ranking"],
     featured: true,
   },
   {
-    id: "fraud-detection",
-    title: "Real-time Fraud Detection",
+    id: "mini-model-rca",
+    title: "Mini-Model Root Cause Analysis",
     description:
-      "ML pipeline for real-time transaction fraud detection with sub-100ms latency.",
-    technologies: ["Python", "Spark", "Kafka", "TensorFlow", "Redis"],
+      "Rapid fraud detection system reducing analysis time from 3 days to 1 hour with 60% reduction in manual analysis effort.",
+    longDescription:
+      "Solved real-time fraud detection challenges using IV and feature importance for feature selection. Achieved clear business value with significant reduction in manual analysis overhead.",
+    technologies: ["Python", "XGBoost", "IV Analysis", "Feature Importance", "Fraud Detection"],
     featured: true,
   },
   {
-    id: "skin-classification",
-    title: "Dermatology AI Assistant",
+    id: "agentic-fraud-analysis",
+    title: "Agentic Fraud Analysis System",
     description:
-      "Deep learning model for automated skin condition classification from clinical images.",
-    technologies: ["PyTorch", "OpenCV", "FastAPI", "React Native"],
-    githubUrl: "https://github.com/yanfei-dai/derm-ai",
+      "Multi-agent orchestration system for automated fraud investigation with MCP tool calls architecture.",
+    longDescription:
+      "Innovative agent orchestration for fraud analysis with well-designed MCP tool calls architecture. Includes comprehensive CI/CD and engineering practices for production deployment.",
+    technologies: ["Python", "LangChain", "MCP", "Multi-Agent", "CI/CD"],
+    featured: true,
   },
   {
-    id: "mlops-platform",
-    title: "MLOps Pipeline Platform",
+    id: "rmr-agent",
+    title: "RMR Agent",
     description:
-      "End-to-end MLOps platform for model training, versioning, and deployment automation.",
-    technologies: ["Python", "Airflow", "MLflow", "Kubernetes", "Terraform"],
-    githubUrl: "https://github.com/yanfei-dai/mlops-platform",
-  },
-  {
-    id: "llm-finetuning",
-    title: "LLM Fine-tuning Toolkit",
-    description:
-      "Toolkit for efficient fine-tuning of large language models using LoRA and QLoRA techniques.",
-    technologies: ["Python", "PyTorch", "Transformers", "PEFT", "bitsandbytes"],
-    githubUrl: "https://github.com/yanfei-dai/llm-finetune",
+      "Automated system that converts research code into production-ready format, bridging the gap between experimentation and deployment.",
+    longDescription:
+      "Intelligent agent that transforms messy research notebooks and scripts into clean, production-ready code with proper structure, documentation, and engineering best practices.",
+    technologies: ["Python", "AST", "Code Generation", "LLM", "MLOps"],
+    featured: true,
   },
 ];

@@ -14,14 +14,14 @@ const contactInfo = [
   {
     icon: Linkedin,
     label: "LinkedIn",
-    value: "linkedin.com/in/yanfei-dai",
-    href: "https://linkedin.com/in/yanfei-dai",
+    value: "linkedin.com/in/yanfdai",
+    href: "https://linkedin.com/in/yanfdai",
   },
   {
     icon: Github,
     label: "GitHub",
-    value: "github.com/yanfei-dai",
-    href: "https://github.com/yanfei-dai",
+    value: "github.com/yanfdai",
+    href: "https://github.com/yanfdai",
   },
   {
     icon: MapPin,

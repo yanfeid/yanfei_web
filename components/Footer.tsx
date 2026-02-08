@@ -14,7 +14,7 @@ export default function Footer() {
 
           <div className="flex items-center gap-6">
             <Link
-              href="https://linkedin.com/in/yanfei-dai"
+              href="https://linkedin.com/in/yanfdai"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted hover:text-accent transition-colors"
@@ -23,7 +23,7 @@ export default function Footer() {
               <Linkedin size={20} />
             </Link>
             <Link
-              href="https://github.com/yanfei-dai"
+              href="https://github.com/yanfdai"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted hover:text-accent transition-colors"

@@ -6,9 +6,9 @@ import SocialLinks from "./SocialLinks";
 
 const titles = [
   "Machine Learning Engineer",
-  "AI/ML Systems Builder",
-  "LLM Specialist",
-  "Full-Stack Developer",
+  "Self-Proclaimed Scientist",
+  "Creative Thinker",
+  "Adventure Seeker",
 ];
 
 export default function Hero() {
@@ -85,9 +85,10 @@ export default function Hero() {
           transition={{ delay: 0.5 }}
           className="text-muted text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed"
         >
-          Building intelligent systems at scale. Passionate about LLMs,
-          distributed computing, and turning complex ML research into
-          production-ready solutions.
+          ML Engineer by trade, creative thinker by nature, self-proclaimed scientist at heart.
+          Passionate about reproducing papers, extreme sports, mountaineering & photography.
+          Currently focused on Agentic AI optimization and ranking modeling.
+          Dream: researching cutting-edge models while traveling the world.
         </motion.p>
 
         <motion.div
