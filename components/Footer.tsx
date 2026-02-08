@@ -14,7 +14,7 @@ export default function Footer() {
 
           <div className="flex items-center gap-6">
             <Link
-              href="https://linkedin.com/in/yanfdai"
+              href="https://www.linkedin.com/in/yanfeidai/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted hover:text-accent transition-colors"
@@ -32,7 +32,7 @@ export default function Footer() {
               <Github size={20} />
             </Link>
             <Link
-              href="mailto:yanfei.dai@example.com"
+              href="mailto:yanfeidai0811@gmail.com"
               className="text-muted hover:text-accent transition-colors"
               aria-label="Email"
             >

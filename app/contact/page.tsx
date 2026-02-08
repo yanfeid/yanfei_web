@@ -8,14 +8,14 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "yanfei.dai@example.com",
-    href: "mailto:yanfei.dai@example.com",
+    value: "yanfeidai0811@gmail.com",
+    href: "mailto:yanfeidai0811@gmail.com",
   },
   {
     icon: Linkedin,
     label: "LinkedIn",
-    value: "linkedin.com/in/yanfdai",
-    href: "https://linkedin.com/in/yanfdai",
+    value: "linkedin.com/in/yanfeidai",
+    href: "https://www.linkedin.com/in/yanfeidai/",
   },
   {
     icon: Github,
