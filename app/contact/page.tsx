@@ -20,8 +20,8 @@ const contactInfo = [
   {
     icon: Github,
     label: "GitHub",
-    value: "github.com/yanfdai",
-    href: "https://github.com/yanfdai",
+    value: "github.com/yanfeid",
+    href: "https://github.com/yanfeid",
   },
   {
     icon: MapPin,

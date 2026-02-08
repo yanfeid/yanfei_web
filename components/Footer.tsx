@@ -23,7 +23,7 @@ export default function Footer() {
               <Linkedin size={20} />
             </Link>
             <Link
-              href="https://github.com/yanfdai"
+              href="https://github.com/yanfeid"
               target="_blank"
               rel="noopener noreferrer"
               className="text-muted hover:text-accent transition-colors"
