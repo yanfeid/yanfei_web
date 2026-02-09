@@ -1,7 +1,7 @@
 import { Metadata } from "next";
+import Image from "next/image";
 import Timeline from "@/components/Timeline";
 import { experiences, education } from "@/data/experience";
-import { GraduationCap } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Experience | Yanfei Dai",
@@ -30,9 +30,22 @@ export default function ExperiencePage() {
               className="p-6 bg-card border border-border rounded-xl hover:border-accent transition-colors"
             >
               <div className="flex items-start gap-4">
-                <div className="p-3 bg-background rounded-lg border border-border">
-                  <GraduationCap size={24} className="text-accent" />
-                </div>
+                {edu.logo ? (
+                  <div className="w-14 h-14 relative flex-shrink-0 bg-white rounded-lg p-1">
+                    <Image
+                      src={edu.logo}
+                      alt={`${edu.school} logo`}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-14 h-14 bg-background rounded-lg border border-border flex items-center justify-center">
+                    <span className="text-2xl font-bold text-accent">
+                      {edu.school.charAt(0)}
+                    </span>
+                  </div>
+                )}
                 <div>
                   <h3 className="text-lg font-bold">{edu.school}</h3>
                   <p className="text-muted text-sm mt-1">{edu.degree}</p>

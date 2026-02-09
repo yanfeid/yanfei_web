@@ -79,13 +79,23 @@ export const experiences: Experience[] = [
   },
 ];
 
-export const education = [
+export interface Education {
+  id: string;
+  school: string;
+  degree: string;
+  location: string;
+  period: string;
+  logo?: string;
+}
+
+export const education: Education[] = [
   {
     id: "cornell",
     school: "Cornell University",
     degree: "Master of Computing and Information Science",
     location: "Ithaca, New York",
     period: "Aug. 2023 – Dec. 2024",
+    logo: "/images/cornell-logo.png",
   },
   {
     id: "nanjing",
@@ -93,5 +103,6 @@ export const education = [
     degree: "Bachelor of Engineering",
     location: "Nanjing, Jiangsu",
     period: "Sep. 2018 – Jun. 2023",
+    logo: "/images/nanjing-logo.png",
   },
 ];
