@@ -116,6 +116,55 @@ export const projects: Project[] = [
       ],
     },
   },
+  {
+    id: "rlhf-alignment-template",
+    title: "RLHF Alignment Template",
+    description:
+      "A comprehensive template for aligning Large Language Models using Reinforcement Learning from Human Feedback (RLHF).",
+    longDescription:
+      "Full-stack solution for LLM alignment including RLHF training, reward model development, interactive feedback collection interface, model explainability dashboards, and scalable Kubernetes deployment.",
+    technologies: ["Python", "PyTorch", "RLHF", "Docker", "Kubernetes", "SHAP"],
+    githubUrl: "https://github.com/yanfeid/rlhf-alignment-template",
+    featured: true,
+    details: {
+      problem: "Aligning LLMs with human preferences requires complex infrastructure: reward modeling, feedback collection, training pipelines, and deployment - often built from scratch for each project.",
+      solution: "Created a comprehensive template covering the full RLHF stack: data preprocessing, transfer learning, reinforcement learning implementation, web-based feedback collection, and production deployment with Kubernetes.",
+      impact: "Accelerates LLM alignment projects by providing battle-tested infrastructure for the complete RLHF workflow.",
+      architecture: "Web UI (Feedback Collection) → Reward Model Training → RLHF Fine-tuning → Evaluation → Kubernetes Deployment",
+      keyFeatures: [
+        "RLHF training pipeline with reward modeling",
+        "Transfer learning support for BERT, GPT, and other pre-trained models",
+        "Interactive web interface for human feedback collection",
+        "SHAP-based explainability dashboards for model transparency",
+        "Docker + Kubernetes deployment with auto-scaling (HPA)",
+        "Comprehensive evaluation metrics for alignment quality",
+      ],
+    },
+  },
+  {
+    id: "inna-tunion-pier",
+    title: "Inna T'Union Pier - Hotel Website",
+    description:
+      "A fullstack end-to-end hotel website with booking system, content management, and responsive design.",
+    longDescription:
+      "Complete hotel website built from scratch featuring room booking, availability management, photo galleries, and an intuitive content management system. Designed for a boutique hotel experience with modern aesthetics.",
+    technologies: ["React", "Next.js", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS"],
+    githubUrl: "https://github.com/wildhoneysocialmedia/innatunionpier",
+    featured: true,
+    details: {
+      problem: "Boutique hotels need custom websites that reflect their unique brand while providing essential booking functionality and easy content management for non-technical staff.",
+      solution: "Built a fullstack solution with Next.js featuring a public-facing website with room showcases, booking system, and an admin dashboard for managing reservations, room availability, and website content.",
+      impact: "Delivered a production-ready hotel website with seamless booking experience and easy content management.",
+      keyFeatures: [
+        "Responsive design optimized for all devices",
+        "Room booking system with availability calendar",
+        "Photo gallery with lightbox functionality",
+        "Admin dashboard for content management",
+        "SEO optimized with Next.js SSG/SSR",
+        "Integration-ready for payment processors",
+      ],
+    },
+  },
 ];
 
 export function getProjectById(id: string): Project | undefined {
