@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const socialLinks = [
   {
-    href: "https://linkedin.com/in/yanfdai",
+    href: "https://www.linkedin.com/in/yanfeidai/",
     icon: Linkedin,
     label: "LinkedIn",
   },
@@ -16,7 +16,7 @@ const socialLinks = [
     label: "GitHub",
   },
   {
-    href: "mailto:yanfei.dai@example.com",
+    href: "mailto:yanfeidai0811@gmail.com",
     icon: Mail,
     label: "Email",
   },
