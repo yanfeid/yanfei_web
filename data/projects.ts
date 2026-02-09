@@ -13,125 +13,106 @@ export interface Project {
     solution?: string;
     impact?: string;
     keyFeatures?: string[];
+    architecture?: string;
   };
 }
 
 export const projects: Project[] = [
   {
-    id: "shopping-feed-recsys",
-    title: "Shopping Feed Recommendation System",
-    description:
-      "Industrial-grade recommendation pipeline at Fintech with two-tower retrieval and fine-ranking, directly integrated with ranking and auction systems.",
-    longDescription:
-      "Complete end-to-end recommendation system from candidate generation to fine-rank. Addressed core RecSys challenges including delayed-feedback bias and class-imbalance. Feature Store integration demonstrates MLOps maturity with real business value loop.",
-    technologies: ["Python", "TensorFlow", "Spark", "Feature Store", "Two-Tower", "Fine-Rank"],
-    githubUrl: "https://github.com/yanfeid/shopping-feed-recsys",
-    featured: true,
-    details: {
-      problem: "Building a scalable recommendation system that handles millions of products while maintaining real-time performance and addressing inherent biases in user feedback data.",
-      solution: "Implemented a two-tower architecture for efficient candidate retrieval, followed by a fine-ranking model for precise ordering. Integrated with Feature Store for real-time feature serving.",
-      impact: "Significant improvement in shopping feed engagement metrics with direct integration into ranking and auction systems.",
-      keyFeatures: [
-        "Two-tower model for candidate generation with sub-100ms latency",
-        "Fine-ranking model with attention mechanisms",
-        "Delayed-feedback bias correction using importance weighting",
-        "Class-imbalance handling with focal loss and sampling strategies",
-        "Feature Store integration for real-time feature serving",
-        "A/B testing framework for model iteration",
-      ],
-    },
-  },
-  {
-    id: "delayed-feedback-cvr",
-    title: "Delayed-Feedback CVR Modeling",
-    description:
-      "Systematic solution for conversion delay bias in ads ranking - a core challenge in advertising recommendation systems.",
-    longDescription:
-      "Tackled the fundamental problem of label bias caused by conversion delays. Systematically compared multiple solutions including importance weighting and survival analysis. Built reproducible experiment framework with direct guidance for ads ranking systems.",
-    technologies: ["Python", "PyTorch", "Survival Analysis", "Importance Weighting", "Ads Ranking"],
-    githubUrl: "https://github.com/yanfeid/delayed-feedback-cvr",
-    featured: true,
-    details: {
-      problem: "Conversion events in advertising often occur days or weeks after ad impressions, leading to significant label bias when training CVR models with recent data.",
-      solution: "Systematic comparison and implementation of multiple approaches: importance weighting, survival analysis models, and hybrid methods to correct for delayed feedback bias.",
-      impact: "Improved CVR prediction accuracy by addressing label bias, with reproducible experiment framework for ongoing model iteration.",
-      keyFeatures: [
-        "Importance weighting with propensity score estimation",
-        "Survival analysis models (Kaplan-Meier, Cox proportional hazards)",
-        "Dual-model approach separating delay and conversion prediction",
-        "Reproducible experiment framework with configurable baselines",
-        "Comprehensive offline and online evaluation metrics",
-      ],
-    },
-  },
-  {
-    id: "mini-model-rca",
-    title: "Mini-Model Root Cause Analysis",
-    description:
-      "Rapid fraud detection system reducing analysis time from 3 days to 1 hour with 60% reduction in manual analysis effort.",
-    longDescription:
-      "Solved real-time fraud detection challenges using IV and feature importance for feature selection. Achieved clear business value with significant reduction in manual analysis overhead.",
-    technologies: ["Python", "XGBoost", "IV Analysis", "Feature Importance", "Fraud Detection"],
-    githubUrl: "https://github.com/yanfeid/mini-model-rca",
-    featured: true,
-    details: {
-      problem: "Traditional fraud root cause analysis required 3+ days of manual investigation by analysts, creating bottlenecks in fraud response.",
-      solution: "Built lightweight 'mini-models' that rapidly identify key features driving fraud patterns, combining Information Value (IV) analysis with tree-based feature importance.",
-      impact: "Reduced analysis time from 3 days to 1 hour, with 60% reduction in manual analysis effort.",
-      keyFeatures: [
-        "Information Value (IV) based feature screening",
-        "XGBoost feature importance extraction",
-        "Automated feature drift detection",
-        "Interactive visualization dashboard",
-        "Integration with existing fraud detection pipeline",
-      ],
-    },
-  },
-  {
     id: "agentic-fraud-analysis",
-    title: "Agentic Fraud Analysis System",
+    title: "Agentic Fraud Analysis",
     description:
-      "Multi-agent orchestration system for automated fraud investigation with MCP tool calls architecture.",
+      "An intelligent multi-agent system for automated fraud detection, investigation, and mitigation using the Model Context Protocol (MCP).",
     longDescription:
-      "Innovative agent orchestration for fraud analysis with well-designed MCP tool calls architecture. Includes comprehensive CI/CD and engineering practices for production deployment.",
-    technologies: ["Python", "LangChain", "MCP", "Multi-Agent", "CI/CD"],
+      "A three-agent architecture that handles fraud incidents end-to-end: Alert Triage Agent consolidates alerts and creates incidents, Diagnose Agent performs root cause analysis, and Mitigation Agent develops and deploys automated solutions.",
+    technologies: ["Python", "MCP", "Multi-Agent", "LLM", "FastAPI", "React"],
     githubUrl: "https://github.com/yanfeid/agentic-fraud-analysis",
     featured: true,
     details: {
-      problem: "Fraud investigation requires analyzing multiple data sources, running various queries, and synthesizing findings - a time-consuming manual process.",
-      solution: "Built a multi-agent system where specialized agents handle different aspects of fraud investigation, orchestrated through MCP (Model Context Protocol) tool calls.",
-      impact: "Automated significant portions of fraud investigation workflow with consistent, auditable analysis trails.",
+      problem: "Fraud investigation requires analyzing multiple data sources, correlating patterns across alerts, and synthesizing findings - a time-consuming manual process that delays response time.",
+      solution: "Built a three-agent system where specialized agents handle different aspects of fraud investigation: Alert Triage for consolidation, Diagnose for RCA, and Mitigation for automated fixes. Orchestrated through MCP (Model Context Protocol) tool calls with human-in-the-loop approval.",
+      impact: "Automated significant portions of fraud investigation workflow with consistent, auditable analysis trails and faster incident response.",
+      architecture: "Monitoring Services → Alert Triage Agent → Diagnose Agent → Mitigation Agent → Human Approval UI",
       keyFeatures: [
-        "Multi-agent orchestration with specialized roles",
-        "MCP tool calls for structured agent-tool interaction",
-        "Automated evidence gathering from multiple data sources",
-        "Natural language report generation",
-        "CI/CD pipeline for agent deployment and testing",
-        "Audit logging and explainability features",
+        "Three-agent architecture: Alert Triage, Diagnose, and Mitigation agents",
+        "MCP servers for modular tool capabilities (data analysis, ML models)",
+        "AI Proxy for request routing and authentication",
+        "Human-in-the-loop UI for reviewing and approving agent plans",
+        "Automated alert correlation and incident creation",
+        "Root cause analysis with attack pattern identification",
       ],
     },
   },
   {
-    id: "rmr-agent",
-    title: "RMR Agent",
+    id: "core-shopping-recsys",
+    title: "Core Shopping Recommendation System",
     description:
-      "Automated system that converts research code into production-ready format, bridging the gap between experimentation and deployment.",
+      "A modular recommendation system framework for e-commerce featuring DIN, DIEN, DCNv2, BST, XGBoost Ranker, and Two-Tower models.",
     longDescription:
-      "Intelligent agent that transforms messy research notebooks and scripts into clean, production-ready code with proper structure, documentation, and engineering best practices.",
-    technologies: ["Python", "AST", "Code Generation", "LLM", "MLOps"],
-    githubUrl: "https://github.com/yanfeid/rmr-agent",
+      "Industrial-grade recommendation system framework with both retrieval and ranking models. Includes state-of-the-art deep learning architectures and reusable neural network layers for building production-ready e-commerce recommendations.",
+    technologies: ["Python", "PyTorch", "TensorFlow", "XGBoost", "LightGBM", "FAISS"],
+    githubUrl: "https://github.com/yanfeid/core_shopping_recsys",
     featured: true,
     details: {
-      problem: "Research code is often messy, poorly documented, and difficult to deploy. The gap between experimentation and production creates significant delays in ML projects.",
-      solution: "An LLM-powered agent that analyzes research code, understands its intent, and refactors it into production-ready format with proper structure, error handling, and documentation.",
-      impact: "Significantly reduces the time to productionize research code while ensuring engineering best practices.",
+      problem: "Building scalable recommendation systems requires implementing multiple complex models (retrieval + ranking) with proper feature engineering, evaluation metrics, and production considerations.",
+      solution: "Created a modular framework with reusable layers (attention, cross-net, embeddings) and implementations of state-of-the-art ranking models (DIN, DIEN, DCNv2, BST) plus retrieval models (Two-Tower, Collaborative Filtering).",
+      impact: "Accelerated recommendation system development with battle-tested implementations based on industrial-grade patterns.",
       keyFeatures: [
-        "AST-based code analysis and understanding",
-        "LLM-powered code refactoring and documentation",
-        "Automatic test generation",
-        "Code style enforcement and linting",
-        "Dependency management and containerization",
-        "Integration with MLOps pipelines",
+        "Ranking Models: DIN, DIEN (AUGRU), DCNv2, BST, XGBoost/LightGBM Rankers",
+        "Retrieval Models: Two-Tower (Dual Encoder), Matrix Factorization + BPR",
+        "Reusable Layers: DIN attention, Multi-head attention, CrossNet, FM, SENet",
+        "Custom Activations: Dice, GELU for CTR prediction",
+        "Comprehensive Metrics: AUC, NDCG, MRR, gAUC, MAP",
+        "Feature Processor for encoding and normalization",
+      ],
+    },
+  },
+  {
+    id: "ml-pipeline-agent",
+    title: "ML Pipeline Agent",
+    description:
+      "An AI-powered tool that automatically converts ML research code into production-ready DAG pipelines.",
+    longDescription:
+      "Helps data scientists transform exploratory machine learning code into structured, production-grade workflows. Uses a multi-agent architecture to analyze Python/Jupyter notebooks, identify ML components, and generate executable DAG pipelines.",
+    technologies: ["Python", "LLM", "DAG", "Jupyter", "GitHub API", "YAML"],
+    githubUrl: "https://github.com/yanfeid/ml-pipeline-agent",
+    featured: true,
+    details: {
+      problem: "Research code is often messy, poorly structured, and difficult to deploy. The gap between ML experimentation and production pipelines creates significant delays and technical debt.",
+      solution: "Built an AI-powered agent that analyzes ML repositories, identifies code components and their I/O attributes, generates DAG workflows with proper dependencies, and produces production-ready notebooks with configuration files.",
+      impact: "Significantly reduces the time to productionize research code while ensuring engineering best practices and reproducibility.",
+      keyFeatures: [
+        "Automatic file analysis to identify relevant ML code",
+        "AI-powered component detection (data loading, preprocessing, training, evaluation)",
+        "DAG generation in YAML format with proper dependencies",
+        "Human-in-the-loop verification for quality control",
+        "Production-ready notebook and config file generation",
+        "Optional PR submission for generated pipelines",
+      ],
+    },
+  },
+  {
+    id: "mini-model",
+    title: "Mini Model - Fraud Diagnostics Platform",
+    description:
+      "An end-to-end pipeline for automated fraud trend analysis, model performance diagnostics, and feature importance evaluation.",
+    longDescription:
+      "Automates the complete fraud diagnostics workflow: validates transaction datasets, enriches data with 25,000+ features, calculates Information Value (IV) using distributed processing, and generates comprehensive performance reports with actionable insights.",
+    technologies: ["Python", "BigQuery", "Dataproc", "Shifu", "IV Analysis", "Spark"],
+    githubUrl: "https://github.com/yanfeid/mini-model",
+    featured: true,
+    details: {
+      problem: "Traditional fraud root cause analysis required days of manual investigation, processing large datasets with thousands of features to identify model degradation and fraud trend shifts.",
+      solution: "Built an automated pipeline that validates datasets, enriches with 25,000+ features via QPull, calculates IV using distributed Shifu processing, and generates professional HTML reports with visualizations.",
+      impact: "Reduced analysis time from 3 days to hours, with 50% cost reduction through dynamic cluster sizing and 82-87% performance improvement via parallel processing.",
+      keyFeatures: [
+        "Automated quality control: validates datasets (10k+ records, 5-60% bad rate)",
+        "Intelligent chunking for large datasets (>26k rows) with parallel processing",
+        "Dynamic Dataproc cluster sizing for cost optimization",
+        "Information Value (IV) calculation via distributed Shifu",
+        "Comprehensive metrics: AUC, ROC, KS, precision/recall for all features",
+        "Professional HTML email reports with visualizations and ZIP archives",
+        "Mock testing framework for offline development",
       ],
     },
   },

@@ -115,6 +115,15 @@ export default function ProjectPage({ params }: Props) {
             </section>
           )}
 
+          {project.details.architecture && (
+            <section className="p-6 bg-card border border-border rounded-xl">
+              <h2 className="text-xl font-bold mb-3 text-accent">Architecture</h2>
+              <div className="bg-background p-4 rounded-lg border border-border font-mono text-sm text-muted overflow-x-auto">
+                {project.details.architecture}
+              </div>
+            </section>
+          )}
+
           {project.details.keyFeatures && project.details.keyFeatures.length > 0 && (
             <section className="p-6 bg-card border border-border rounded-xl">
               <h2 className="text-xl font-bold mb-4 text-accent">Key Features</h2>
