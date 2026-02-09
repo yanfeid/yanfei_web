@@ -3,26 +3,34 @@
 import { motion } from "framer-motion";
 
 const skills = [
-  { name: "Python", category: "language" },
-  { name: "PyTorch", category: "ml" },
-  { name: "TensorFlow", category: "ml" },
-  { name: "LLMs", category: "ml" },
-  { name: "RAG", category: "ml" },
-  { name: "Transformers", category: "ml" },
-  { name: "LangChain", category: "ml" },
-  { name: "CUDA", category: "infra" },
-  { name: "Kubernetes", category: "infra" },
-  { name: "Docker", category: "infra" },
-  { name: "AWS", category: "infra" },
-  { name: "GCP", category: "infra" },
-  { name: "React", category: "frontend" },
-  { name: "TypeScript", category: "language" },
-  { name: "Node.js", category: "backend" },
-  { name: "PostgreSQL", category: "backend" },
-  { name: "Redis", category: "backend" },
-  { name: "FastAPI", category: "backend" },
-  { name: "MLOps", category: "ml" },
-  { name: "Distributed Systems", category: "infra" },
+  // Modeling & ML
+  { name: "Recommendation Systems", category: "modeling" },
+  { name: "Two-Tower Models", category: "modeling" },
+  { name: "DIN/DIEN/DCN", category: "modeling" },
+  { name: "CTR/CVR Prediction", category: "modeling" },
+  { name: "Ranking Models", category: "modeling" },
+  { name: "Fraud Detection", category: "modeling" },
+  { name: "Feature Engineering", category: "modeling" },
+  { name: "XGBoost/LightGBM", category: "modeling" },
+
+  // LLM & Agentic
+  { name: "LLM Fine-tuning", category: "llm" },
+  { name: "Agentic AI", category: "llm" },
+  { name: "MCP", category: "llm" },
+  { name: "LoRA/PEFT", category: "llm" },
+  { name: "Quantization", category: "llm" },
+  { name: "Post-training Optimization", category: "llm" },
+
+  // Frameworks
+  { name: "PyTorch", category: "framework" },
+  { name: "TensorFlow", category: "framework" },
+  { name: "DeepSpeed", category: "framework" },
+  { name: "TensorRT", category: "framework" },
+
+  // Infra & Tools
+  { name: "Feature Store", category: "infra" },
+  { name: "Spark", category: "infra" },
+  { name: "Python", category: "infra" },
 ];
 
 const container = {

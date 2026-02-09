@@ -9,7 +9,7 @@ export interface GalleryImage {
   id: string;
   src: string;
   alt: string;
-  category: "photography" | "hiking" | "travel";
+  category: "landscape" | "astronomy" | "portrait";
   aspectRatio?: "square" | "portrait" | "landscape";
 }
 
@@ -19,9 +19,9 @@ interface GalleryGridProps {
 
 const categories = [
   { id: "all", label: "All" },
-  { id: "photography", label: "Photography" },
-  { id: "hiking", label: "Hiking" },
-  { id: "travel", label: "Travel" },
+  { id: "landscape", label: "Landscape" },
+  { id: "astronomy", label: "Astronomy" },
+  { id: "portrait", label: "Portrait" },
 ];
 
 export default function GalleryGrid({ images }: GalleryGridProps) {
