@@ -9,6 +9,50 @@ interface DigitPortraitProps {
   height?: number;
 }
 
+interface ParticleData {
+  x: number;
+  y: number;
+  targetX: number;
+  targetY: number;
+  color: string;
+  digit: string;
+  speed: number;
+}
+
+function createParticle(x: number, y: number, color: string, width: number, height: number): ParticleData {
+  return {
+    targetX: x,
+    targetY: y,
+    x: Math.random() * width,
+    y: Math.random() * height,
+    color,
+    digit: Math.floor(Math.random() * 10).toString(),
+    speed: 0.05 + Math.random() * 0.05,
+  };
+}
+
+function updateParticle(particle: ParticleData, assembled: boolean, width: number, height: number): void {
+  if (assembled) {
+    particle.x += (particle.targetX - particle.x) * particle.speed;
+    particle.y += (particle.targetY - particle.y) * particle.speed;
+  } else {
+    const targetX = Math.random() * width;
+    const targetY = Math.random() * height;
+    particle.x += (targetX - particle.x) * 0.02;
+    particle.y += (targetY - particle.y) * 0.02;
+  }
+  if (Math.random() < 0.02) {
+    particle.digit = Math.floor(Math.random() * 10).toString();
+  }
+}
+
+function drawParticle(ctx: CanvasRenderingContext2D, particle: ParticleData, assembled: boolean, cellSize: number): void {
+  const alpha = assembled ? 1 : 0.6;
+  ctx.fillStyle = particle.color.replace(")", `, ${alpha})`).replace("rgb", "rgba");
+  ctx.font = `bold ${cellSize}px JetBrains Mono, monospace`;
+  ctx.fillText(particle.digit, particle.x, particle.y);
+}
+
 export default function DigitPortrait({
   imageSrc,
   width = 280,
@@ -18,63 +62,11 @@ export default function DigitPortrait({
   const [isHovered, setIsHovered] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const animationRef = useRef<number>();
-  const particlesRef = useRef<Particle[]>([]);
-  const imageDataRef = useRef<ImageData | null>(null);
+  const particlesRef = useRef<ParticleData[]>([]);
 
-  const cellSize = 3; // Smaller = more detail
+  const cellSize = 3;
   const cols = Math.floor(width / cellSize);
   const rows = Math.floor(height / cellSize);
-
-  class Particle {
-    x: number;
-    y: number;
-    targetX: number;
-    targetY: number;
-    color: string;
-    digit: string;
-    speed: number;
-    originalX: number;
-    originalY: number;
-
-    constructor(x: number, y: number, color: string) {
-      this.targetX = x;
-      this.targetY = y;
-      this.originalX = x;
-      this.originalY = y;
-      // Start from random positions
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-      this.color = color;
-      this.digit = Math.floor(Math.random() * 10).toString();
-      this.speed = 0.05 + Math.random() * 0.05;
-    }
-
-    update(assembled: boolean) {
-      if (assembled) {
-        // Move towards target
-        this.x += (this.targetX - this.x) * this.speed;
-        this.y += (this.targetY - this.y) * this.speed;
-      } else {
-        // Scatter effect
-        const targetX = Math.random() * width;
-        const targetY = Math.random() * height;
-        this.x += (targetX - this.x) * 0.02;
-        this.y += (targetY - this.y) * 0.02;
-      }
-
-      // Randomly change digit occasionally
-      if (Math.random() < 0.02) {
-        this.digit = Math.floor(Math.random() * 10).toString();
-      }
-    }
-
-    draw(ctx: CanvasRenderingContext2D, assembled: boolean) {
-      const alpha = assembled ? 1 : 0.6;
-      ctx.fillStyle = this.color.replace(")", `, ${alpha})`).replace("rgb", "rgba");
-      ctx.font = `bold ${cellSize}px JetBrains Mono, monospace`;
-      ctx.fillText(this.digit, this.x, this.y);
-    }
-  }
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -88,7 +80,6 @@ export default function DigitPortrait({
     img.src = imageSrc;
 
     img.onload = () => {
-      // Create off-screen canvas to sample image
       const offCanvas = document.createElement("canvas");
       offCanvas.width = cols;
       offCanvas.height = rows;
@@ -97,10 +88,8 @@ export default function DigitPortrait({
 
       offCtx.drawImage(img, 0, 0, cols, rows);
       const imageData = offCtx.getImageData(0, 0, cols, rows);
-      imageDataRef.current = imageData;
 
-      // Create particles
-      const particles: Particle[] = [];
+      const particles: ParticleData[] = [];
       for (let y = 0; y < rows; y++) {
         for (let x = 0; x < cols; x++) {
           const i = (y * cols + x) * 4;
@@ -109,11 +98,10 @@ export default function DigitPortrait({
           const b = imageData.data[i + 2];
           const a = imageData.data[i + 3];
 
-          // Skip transparent or very dark pixels
           const brightness = (r + g + b) / 3;
           if (a > 128 && brightness > 20) {
             const color = `rgb(${r}, ${g}, ${b})`;
-            particles.push(new Particle(x * cellSize, y * cellSize, color));
+            particles.push(createParticle(x * cellSize, y * cellSize, color, width, height));
           }
         }
       }
@@ -139,15 +127,13 @@ export default function DigitPortrait({
     if (!ctx) return;
 
     let assembled = true;
-    let assembleProgress = 0;
 
     const animate = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Update and draw particles
       particlesRef.current.forEach((particle) => {
-        particle.update(assembled);
-        particle.draw(ctx, assembled);
+        updateParticle(particle, assembled, width, height);
+        drawParticle(ctx, particle, assembled, cellSize);
       });
 
       if (isHovered) {
@@ -166,7 +152,7 @@ export default function DigitPortrait({
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isLoaded, isHovered, width, height]);
+  }, [isLoaded, isHovered, width, height, cellSize]);
 
   return (
     <motion.div
@@ -178,10 +164,8 @@ export default function DigitPortrait({
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="relative">
-        {/* Glow effect */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 blur-3xl rounded-full" />
 
-        {/* Canvas */}
         <canvas
           ref={canvasRef}
           width={width}
@@ -190,7 +174,6 @@ export default function DigitPortrait({
           style={{ imageRendering: "pixelated" }}
         />
 
-        {/* Loading state */}
         {!isLoaded && (
           <div
             className="absolute inset-0 flex items-center justify-center bg-card/50 rounded-lg"
@@ -202,7 +185,6 @@ export default function DigitPortrait({
           </div>
         )}
 
-        {/* Hint text */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
