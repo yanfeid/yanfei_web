@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" font-family="ui-monospace, 'JetBrains Mono', Menlo, monospace">
+  <defs>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="1.2" cy="1.2" r="1.2" fill="#2a2a26"/>
+    </pattern>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6f6f66"/>
+    </marker>
+    <marker id="arrg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9ece6a"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="1000" fill="#141412"/>
+  <rect width="1600" height="1000" fill="url(#dots)"/>
+
+  <text x="120" y="130" font-size="26" fill="#9ece6a">// rlhf alignment template</text>
+  <text x="120" y="180" font-size="20" fill="#6f6f66">the full preference-learning loop, packaged</text>
+
+  <!-- loop: model -> outputs -> human feedback -> reward model -> ppo -> model -->
+  <g transform="translate(650,270)">
+    <rect width="300" height="120" rx="10" fill="#1b1b18" stroke="#9ece6a" stroke-width="2.5"/>
+    <text x="150" y="55" font-size="22" fill="#9ece6a" text-anchor="middle">POLICY MODEL</text>
+    <text x="150" y="92" font-size="16" fill="#6f6f66" text-anchor="middle">SFT checkpoint</text>
+  </g>
+
+  <g transform="translate(1130,430)">
+    <rect width="280" height="120" rx="10" fill="#1b1b18" stroke="#3a3a35" stroke-width="2"/>
+    <text x="140" y="55" font-size="20" fill="#d8d5ca" text-anchor="middle">HUMAN FEEDBACK</text>
+    <text x="140" y="92" font-size="16" fill="#6f6f66" text-anchor="middle">A ≻ B · web UI</text>
+  </g>
+
+  <g transform="translate(650,610)">
+    <rect width="300" height="120" rx="10" fill="#1b1b18" stroke="#3a3a35" stroke-width="2"/>
+    <text x="150" y="55" font-size="20" fill="#d8d5ca" text-anchor="middle">REWARD MODEL</text>
+    <text x="150" y="92" font-size="16" fill="#6f6f66" text-anchor="middle">preference-trained</text>
+  </g>
+
+  <g transform="translate(190,430)">
+    <rect width="280" height="120" rx="10" fill="#1b1b18" stroke="#3a3a35" stroke-width="2"/>
+    <text x="140" y="55" font-size="20" fill="#d8d5ca" text-anchor="middle">RL FINE-TUNING</text>
+    <text x="140" y="92" font-size="16" fill="#6f6f66" text-anchor="middle">policy optimization</text>
+  </g>
+
+  <!-- circular arrows -->
+  <path d="M 960 340 Q 1270 350 1275 422" stroke="#6f6f66" stroke-width="2.5" fill="none" marker-end="url(#arr)"/>
+  <path d="M 1265 558 Q 1220 680 958 672" stroke="#6f6f66" stroke-width="2.5" fill="none" marker-end="url(#arr)"/>
+  <path d="M 642 672 Q 380 680 332 558" stroke="#6f6f66" stroke-width="2.5" fill="none" marker-end="url(#arr)"/>
+  <path d="M 338 422 Q 385 350 642 338" stroke="#9ece6a" stroke-width="2.5" fill="none" marker-end="url(#arrg)"/>
+
+  <text x="800" y="505" font-size="17" fill="#6f6f66" text-anchor="middle">sample → judge → reward → update</text>
+
+  <text x="120" y="880" font-size="22" fill="#6f6f66">SHAP explainability · K8s deployment with autoscaling</text>
+  <text x="1480" y="880" font-size="20" fill="#5a5a52" text-anchor="end">PYTORCH · RLHF · K8S</text>
+</svg>

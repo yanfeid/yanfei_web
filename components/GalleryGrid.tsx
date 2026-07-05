@@ -55,15 +55,15 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
   return (
     <>
       {/* Category Filter */}
-      <div className="flex flex-wrap justify-center gap-3 mb-12">
+      <div className="flex flex-wrap gap-2 mb-12">
         {categories.map((category) => (
           <button
             key={category.id}
             onClick={() => setSelectedCategory(category.id)}
-            className={`px-4 py-2 rounded-full font-mono text-sm transition-all ${
+            className={`px-4 py-1.5 rounded-full font-mono text-xs uppercase tracking-[0.15em] border transition-all ${
               selectedCategory === category.id
-                ? "bg-accent text-white"
-                : "bg-card border border-border hover:border-accent text-muted hover:text-foreground"
+                ? "bg-foreground text-background border-foreground"
+                : "bg-transparent border-border text-muted hover:text-foreground hover:border-muted"
             }`}
           >
             {category.label}
@@ -101,9 +101,9 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
-                  <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-medium">
-                    View
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/25 transition-colors duration-300 flex items-end p-4">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {image.category} · view
                   </span>
                 </div>
               </div>

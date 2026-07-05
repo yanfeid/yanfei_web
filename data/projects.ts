@@ -7,6 +7,7 @@ export interface Project {
   githubUrl?: string;
   demoUrl?: string;
   imageUrl?: string;
+  images?: { src: string; caption: string }[];
   featured?: boolean;
   details?: {
     problem?: string;
@@ -19,7 +20,71 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: "black-commission",
+    title: "Black Commission",
+    description:
+      "A 1–4 player online co-op retrieval game set in 2098: run a nearly bankrupt surface-recovery agency on an abandoned Earth, taking increasingly bizarre commissions from Martian clients.",
+    longDescription:
+      "After Mars colonization, the wealthy left Earth behind — but they still want authentic Earth goods. You run a run-down retrieval agency: accept commissions on the office computer, gear up, drive out to exclusion zones, recover sealed specimens while evading the Echo Mold, and come back to settle the books. Money, reputation, debt pressure, and three endings.",
+    technologies: ["Unity", "C#", "Netcode", "Gameplay Systems", "Level Design"],
+    imageUrl: "/images/projects/blackcommission/office.png",
+    images: [
+      {
+        src: "/images/projects/blackcommission/office.png",
+        caption: "The run-down agency office where every run begins",
+      },
+      {
+        src: "/images/projects/blackcommission/mars-pad.png",
+        caption: "Loading the van under a Martian-orange sky",
+      },
+    ],
+    featured: true,
+    details: {
+      keyFeatures: [
+        "Online co-op for 1–4 players with room codes and LAN direct connect",
+        "Full commission loop: accept → gear up → retrieve → settle → upgrade",
+        "The Echo Mold — an infected fungal host that stalks mission sites",
+        "Agency economy: money, reputation, XP, debt pressure, office upgrades",
+        "2098 Mars/Earth world-building with license progression and three endings",
+        "Modular architecture (Mission, Level Topology, Office, Monsters) with edit-mode test suites",
+      ],
+    },
+  },
+  {
+    id: "summit",
+    title: "Summit",
+    description:
+      "A recording tool and peak-centric community for alpine climbers and high-altitude trekkers — expedition logs auto-generated from GPS tracks, altitude curves, and geo-arranged photos.",
+    longDescription:
+      "Not a photo-first social feed — a spatio-temporal recorder for mountaineers. Start recording, complete a climb, and Summit assembles the full log: track, altitude profile, photos pinned by location, weather data. Peaks are the social nodes: find the people who climbed the same mountain, or are planning to.",
+    technologies: [
+      "React Native",
+      "Expo",
+      "Fastify",
+      "PostgreSQL",
+      "Redis",
+      "pnpm monorepo",
+    ],
+    githubUrl: "https://github.com/yanfeid/summit",
+    imageUrl: "/images/projects/covers/summit.svg",
+    featured: true,
+    details: {
+      problem:
+        "Climbing content on mainstream platforms is polished-photo-first and scattered — records of a single expedition end up fragmented, and finding partners for a specific peak relies on luck.",
+      solution:
+        "A recorder that captures the climb as continuous space-time data (track, altitude, photos, weather) with optional notes, plus a community organized around peaks instead of follower graphs — connect through shared mountains, not algorithms.",
+      keyFeatures: [
+        "Auto-generated expedition logs: GPS track, altitude curve, geo-arranged photos, weather",
+        "Peak pages as social hubs: who's been, who's planning",
+        "Two-circle social model: teammates you've climbed with, and peak-mates you haven't yet",
+        "Fastify REST API + React Native (Expo) app + shared TypeScript types in a pnpm monorepo",
+        "PostgreSQL + Redis, deployed on Railway",
+      ],
+    },
+  },
+  {
     id: "agentic-fraud-analysis",
+    imageUrl: "/images/projects/covers/agentic-fraud.svg",
     title: "Agentic Fraud Analysis",
     description:
       "An intelligent multi-agent system for automated fraud detection, investigation, and mitigation using the Model Context Protocol (MCP).",
@@ -45,6 +110,7 @@ export const projects: Project[] = [
   },
   {
     id: "core-shopping-recsys",
+    imageUrl: "/images/projects/covers/core-recsys.svg",
     title: "Core Shopping Recommendation System",
     description:
       "A modular recommendation system framework for e-commerce featuring DIN, DIEN, DCNv2, BST, XGBoost Ranker, and Two-Tower models.",
@@ -69,6 +135,7 @@ export const projects: Project[] = [
   },
   {
     id: "ml-pipeline-agent",
+    imageUrl: "/images/projects/covers/ml-pipeline.svg",
     title: "ML Pipeline Agent",
     description:
       "An AI-powered tool that automatically converts ML research code into production-ready DAG pipelines.",
@@ -93,23 +160,24 @@ export const projects: Project[] = [
   },
   {
     id: "mini-model",
+    imageUrl: "/images/projects/covers/mini-model.svg",
     title: "Mini Model - Fraud Diagnostics Platform",
     description:
       "An end-to-end pipeline for automated fraud trend analysis, model performance diagnostics, and feature importance evaluation.",
     longDescription:
       "Automates the complete fraud diagnostics workflow: validates transaction datasets, enriches data with 25,000+ features, calculates Information Value (IV) using distributed processing, and generates comprehensive performance reports with actionable insights.",
-    technologies: ["Python", "BigQuery", "Dataproc", "Shifu", "IV Analysis", "Spark"],
+    technologies: ["Python", "BigQuery", "Dataproc", "Spark", "IV Analysis", "LightGBM"],
     githubUrl: "https://github.com/yanfeid/mini-model",
     featured: true,
     details: {
       problem: "Traditional fraud root cause analysis required days of manual investigation, processing large datasets with thousands of features to identify model degradation and fraud trend shifts.",
-      solution: "Built an automated pipeline that validates datasets, enriches with 25,000+ features via QPull, calculates IV using distributed Shifu processing, and generates professional HTML reports with visualizations.",
+      solution: "Built an automated pipeline that validates datasets, enriches them with 25,000+ features from a feature platform, calculates IV with distributed Spark processing, and generates professional HTML reports with visualizations.",
       impact: "Reduced analysis time from 3 days to hours, with 50% cost reduction through dynamic cluster sizing and 82-87% performance improvement via parallel processing.",
       keyFeatures: [
         "Automated quality control: validates datasets (10k+ records, 5-60% bad rate)",
         "Intelligent chunking for large datasets (>26k rows) with parallel processing",
         "Dynamic Dataproc cluster sizing for cost optimization",
-        "Information Value (IV) calculation via distributed Shifu",
+        "Information Value (IV) calculation via distributed Spark jobs",
         "Comprehensive metrics: AUC, ROC, KS, precision/recall for all features",
         "Professional HTML email reports with visualizations and ZIP archives",
         "Mock testing framework for offline development",
@@ -118,6 +186,7 @@ export const projects: Project[] = [
   },
   {
     id: "rlhf-alignment-template",
+    imageUrl: "/images/projects/covers/rlhf.svg",
     title: "RLHF Alignment Template",
     description:
       "A comprehensive template for aligning Large Language Models using Reinforcement Learning from Human Feedback (RLHF).",
@@ -143,6 +212,7 @@ export const projects: Project[] = [
   },
   {
     id: "inna-tunion-pier",
+    imageUrl: "/images/projects/covers/hotel.svg",
     title: "Inna T'Union Pier - Hotel Website",
     description:
       "A fullstack end-to-end hotel website with booking system, content management, and responsive design.",

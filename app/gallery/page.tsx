@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import GalleryGrid, { GalleryImage } from "@/components/GalleryGrid";
+import PageHeader from "@/components/PageHeader";
 
 export const metadata: Metadata = {
   title: "Gallery | Yanfei Dai",
@@ -30,12 +31,15 @@ const galleryImages: GalleryImage[] = [
 export default function GalleryPage() {
   return (
     <div className="max-w-6xl mx-auto px-6 py-16">
-      <h1 className="text-4xl md:text-5xl font-bold text-center mb-4">
-        Gallery
-      </h1>
-      <p className="text-muted text-center mb-16 max-w-2xl mx-auto">
-        Join me and explore the world through my lens.
-      </p>
+      <PageHeader
+        overline="fig. 06 — field notes, expanded"
+        title={
+          <>
+            Light, <em className="font-serif italic">collected</em>
+          </>
+        }
+        lede="Night skies and mountain ranges — what I bring back when I'm away from the keyboard."
+      />
 
       <GalleryGrid images={galleryImages} />
     </div>

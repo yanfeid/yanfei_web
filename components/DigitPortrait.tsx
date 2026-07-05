@@ -7,6 +7,7 @@ interface DigitPortraitProps {
   imageSrc: string;
   width?: number;
   height?: number;
+  cellSize?: number;
 }
 
 interface ParticleData {
@@ -57,14 +58,13 @@ export default function DigitPortrait({
   imageSrc,
   width = 280,
   height = 350,
+  cellSize = 3,
 }: DigitPortraitProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const animationRef = useRef<number>();
   const particlesRef = useRef<ParticleData[]>([]);
-
-  const cellSize = 3;
   const cols = Math.floor(width / cellSize);
   const rows = Math.floor(height / cellSize);
 
@@ -164,7 +164,7 @@ export default function DigitPortrait({
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="relative">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 blur-3xl rounded-full" />
+        <div className="absolute inset-0 bg-foreground/[0.06] blur-3xl rounded-full" />
 
         <canvas
           ref={canvasRef}
@@ -185,14 +185,6 @@ export default function DigitPortrait({
           </div>
         )}
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs text-muted font-mono whitespace-nowrap"
-        >
-          hover to scatter
-        </motion.p>
       </div>
     </motion.div>
   );
