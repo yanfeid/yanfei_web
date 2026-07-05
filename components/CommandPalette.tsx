@@ -80,15 +80,6 @@ export default function CommandPalette() {
         },
       },
       {
-        id: "resume",
-        label: "open resume.pdf",
-        hint: "the quiet way to get it",
-        keywords: "resume cv",
-        run: () => {
-          window.open("/resume.pdf", "_blank");
-        },
-      },
-      {
         id: "theme",
         label: "toggle --theme",
         hint: "light / dark",
