@@ -2,6 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme tokens — RGB channels so Tailwind opacity modifiers keep working */
+:root,
+:root.dark {
+  --c-background: 17 17 16;
+  --c-foreground: 236 236 234;
+  --c-muted: 143 143 136;
+  --c-accent: 216 213 202;
+  --c-card: 24 24 22;
+  --c-border: 41 41 38;
+  --c-terminal: 158 206 106;
+}
+
+:root.light {
+  --c-background: 245 244 240;
+  --c-foreground: 26 26 24;
+  --c-muted: 110 110 102;
+  --c-accent: 74 74 66;
+  --c-card: 255 255 255;
+  --c-border: 220 218 209;
+  --c-terminal: 79 111 45;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -13,14 +35,14 @@ html {
 }
 
 body {
-  color: #ffffff;
-  background: #0a0a0a;
+  color: rgb(var(--c-foreground));
+  background: rgb(var(--c-background));
   min-height: 100vh;
 }
 
 ::selection {
-  background-color: #3b82f6;
-  color: #ffffff;
+  background-color: rgb(var(--c-accent));
+  color: rgb(var(--c-background));
 }
 
 /* Custom scrollbar */
@@ -29,16 +51,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: rgb(var(--c-background));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #262626;
+  background: rgb(var(--c-border));
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3b82f6;
+  background: rgb(var(--c-muted));
 }
 
 @layer utilities {
@@ -53,6 +75,24 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Subtle dot-grid backdrop */
+.dots-bg {
+  background-image: radial-gradient(rgb(var(--c-foreground) / 0.14) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 35%, black 30%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 35%, black 30%, transparent 75%);
+}
+
+/* Fine film grain */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.92 0 0 0 0 0.92 0 0 0 0 0.9 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* Glass effect */

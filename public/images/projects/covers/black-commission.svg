@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" font-family="ui-monospace, 'JetBrains Mono', Menlo, monospace">
+  <defs>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="1.2" cy="1.2" r="1.2" fill="#2a2a26"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="1000" fill="#141412"/>
+  <rect width="1600" height="1000" fill="url(#dots)"/>
+
+  <!-- retro paper card, echoing the in-game settlement slip -->
+  <g transform="translate(330,180)">
+    <rect x="10" y="10" width="940" height="640" fill="#0c0c0a" opacity="0.8"/>
+    <rect width="940" height="640" fill="#e6dcc2"/>
+    <rect width="940" height="86" fill="#7e2f2b"/>
+    <text x="42" y="54" font-size="30" letter-spacing="6" fill="#e6dcc2">BLACK COMMISSION</text>
+    <text x="898" y="54" font-size="22" fill="#e6dcc2" text-anchor="end">EST. 2098</text>
+
+    <text x="42" y="150" font-size="20" letter-spacing="4" fill="#7a7261">SURFACE RECOVERY DISPATCH</text>
+    <line x1="42" y1="172" x2="898" y2="172" stroke="#c9bd9e" stroke-width="2"/>
+
+    <text x="42" y="230" font-size="24" fill="#3d382c">ORDER  BC-2098-5570</text>
+    <text x="42" y="278" font-size="24" fill="#3d382c">CREW   1-4 AGENTS · ONLINE CO-OP</text>
+    <text x="42" y="326" font-size="24" fill="#3d382c">TARGET SEALED BIO-COLUMN · EARTH COAST 01</text>
+    <text x="42" y="374" font-size="24" fill="#7e2f2b">HAZARD ECHO MOLD — AVOID CONTACT</text>
+
+    <line x1="42" y1="420" x2="898" y2="420" stroke="#c9bd9e" stroke-width="2"/>
+    <text x="42" y="478" font-size="24" fill="#3d382c">REWARD</text>
+    <text x="898" y="478" font-size="24" fill="#3d382c" text-anchor="end">+190G</text>
+    <text x="42" y="530" font-size="30" fill="#1f1c14">PAYOUT</text>
+    <text x="898" y="530" font-size="30" fill="#1f1c14" text-anchor="end">190G</text>
+
+    <!-- approval stamp -->
+    <g transform="translate(640,440) rotate(-12)">
+      <rect x="-10" y="-34" width="220" height="70" fill="none" stroke="#a3402f" stroke-width="5"/>
+      <text x="100" y="14" font-size="34" letter-spacing="8" fill="#a3402f" text-anchor="middle">CLEARED</text>
+    </g>
+
+    <text x="42" y="600" font-size="18" fill="#7a7261">RETURN TO OFFICE TERMINAL FOR LEDGER ENTRY</text>
+  </g>
+
+  <text x="330" y="900" font-size="24" fill="#9ece6a">$ accept --commission bc-2098-5570</text>
+  <text x="1270" y="900" font-size="20" fill="#5a5a52" text-anchor="end">UNITY · C# · NETCODE</text>
+</svg>

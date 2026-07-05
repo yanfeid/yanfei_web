@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Github, ExternalLink } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Github } from "lucide-react";
 import { projects, getProjectById } from "@/data/projects";
 
 interface Props {
@@ -24,6 +24,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+const detailSections = [
+  ["problem", "The problem"],
+  ["solution", "The approach"],
+  ["impact", "The outcome"],
+] as const;
+
 export default function ProjectPage({ params }: Props) {
   const project = getProjectById(params.id);
 
@@ -31,36 +37,50 @@ export default function ProjectPage({ params }: Props) {
     notFound();
   }
 
+  const index = projects.findIndex((p) => p.id === project.id);
+
   return (
-    <div className="max-w-4xl mx-auto px-6 py-16">
-      {/* Back Button */}
+    <div className="max-w-3xl mx-auto px-6 py-16">
+      {/* Back */}
       <Link
         href="/projects"
-        className="inline-flex items-center gap-2 text-muted hover:text-accent transition-colors mb-8"
+        className="group inline-flex items-center gap-2 font-mono text-sm text-muted hover:text-foreground transition-colors mb-14"
       >
-        <ArrowLeft size={18} />
-        Back to Projects
+        <ArrowLeft
+          size={15}
+          className="transition-transform group-hover:-translate-x-1"
+        />
+        All projects
       </Link>
 
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">{project.title}</h1>
-        <p className="text-muted text-lg leading-relaxed">
+      <header className="mb-12">
+        <p className="font-mono text-xs uppercase tracking-[0.25em] text-muted mb-4">
+          project {String(index + 1).padStart(2, "0")}
+        </p>
+        <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-[1.1] mb-6">
+          {project.title}
+        </h1>
+        <p className="font-serif italic text-xl text-muted leading-relaxed">
           {project.longDescription || project.description}
         </p>
-      </div>
+      </header>
 
-      {/* Links */}
-      <div className="flex gap-4 mb-12">
+      {/* Meta row: links + stack */}
+      <div className="flex flex-wrap items-center gap-x-8 gap-y-4 border-y border-border py-5 mb-14">
         {project.githubUrl && (
           <Link
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-white rounded-lg font-medium hover:bg-accent/90 transition-colors"
+            className="group inline-flex items-center gap-2 text-sm border-b border-muted pb-0.5 hover:border-accent transition-colors"
           >
-            <Github size={20} />
-            View on GitHub
+            <Github size={15} />
+            Source
+            <ArrowUpRight
+              size={13}
+              className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
           </Link>
         )}
         {project.demoUrl && (
@@ -68,75 +88,90 @@ export default function ProjectPage({ params }: Props) {
             href={project.demoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-card border border-border text-foreground rounded-lg font-medium hover:border-accent transition-colors"
+            className="group inline-flex items-center gap-2 text-sm border-b border-muted pb-0.5 hover:border-accent transition-colors"
           >
-            <ExternalLink size={20} />
-            Live Demo
+            Live demo
+            <ArrowUpRight
+              size={13}
+              className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            />
           </Link>
         )}
+        <p className="font-mono text-xs text-muted/80">
+          {project.technologies.join(" · ")}
+        </p>
       </div>
 
-      {/* Tech Stack */}
-      <div className="mb-12">
-        <h2 className="text-xl font-bold mb-4">Tech Stack</h2>
-        <div className="flex flex-wrap gap-2">
-          {project.technologies.map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1.5 text-sm font-mono bg-card rounded-lg border border-border"
-            >
-              {tech}
-            </span>
+      {/* Screenshots */}
+      {project.images && project.images.length > 0 && (
+        <div className="mb-14 space-y-8">
+          {project.images.map((img, i) => (
+            <figure key={img.src}>
+              <div className="overflow-hidden rounded-lg border border-border">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={img.src}
+                  alt={img.caption}
+                  loading="lazy"
+                  className="w-full"
+                />
+              </div>
+              <figcaption className="mt-3 font-mono text-[11px] uppercase tracking-[0.15em] text-muted/70">
+                <span className="text-terminal normal-case tracking-normal">
+                  {"//"}
+                </span>{" "}
+                fig. {String(i + 1).padStart(2, "0")} — {img.caption}
+              </figcaption>
+            </figure>
           ))}
         </div>
-      </div>
+      )}
 
       {/* Details */}
       {project.details && (
-        <div className="space-y-8">
-          {project.details.problem && (
-            <section className="p-6 bg-card border border-border rounded-xl">
-              <h2 className="text-xl font-bold mb-3 text-accent">Problem</h2>
-              <p className="text-muted leading-relaxed">{project.details.problem}</p>
-            </section>
-          )}
-
-          {project.details.solution && (
-            <section className="p-6 bg-card border border-border rounded-xl">
-              <h2 className="text-xl font-bold mb-3 text-accent">Solution</h2>
-              <p className="text-muted leading-relaxed">{project.details.solution}</p>
-            </section>
-          )}
-
-          {project.details.impact && (
-            <section className="p-6 bg-card border border-border rounded-xl">
-              <h2 className="text-xl font-bold mb-3 text-accent">Impact</h2>
-              <p className="text-muted leading-relaxed">{project.details.impact}</p>
-            </section>
+        <div className="space-y-14">
+          {detailSections.map(([key, heading]) =>
+            project.details?.[key] ? (
+              <section key={key}>
+                <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-muted mb-4">
+                  {heading}
+                </h2>
+                <p className="text-foreground/85 leading-relaxed text-[17px]">
+                  {project.details[key]}
+                </p>
+              </section>
+            ) : null
           )}
 
           {project.details.architecture && (
-            <section className="p-6 bg-card border border-border rounded-xl">
-              <h2 className="text-xl font-bold mb-3 text-accent">Architecture</h2>
-              <div className="bg-background p-4 rounded-lg border border-border font-mono text-sm text-muted overflow-x-auto">
+            <section>
+              <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-muted mb-4">
+                Architecture
+              </h2>
+              <div className="rounded-lg border border-border bg-card/60 p-5 font-mono text-sm text-muted overflow-x-auto">
                 {project.details.architecture}
               </div>
             </section>
           )}
 
-          {project.details.keyFeatures && project.details.keyFeatures.length > 0 && (
-            <section className="p-6 bg-card border border-border rounded-xl">
-              <h2 className="text-xl font-bold mb-4 text-accent">Key Features</h2>
-              <ul className="space-y-3">
-                {project.details.keyFeatures.map((feature, index) => (
-                  <li key={index} className="flex items-start gap-3 text-muted">
-                    <span className="text-accent mt-1">•</span>
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
+          {project.details.keyFeatures &&
+            project.details.keyFeatures.length > 0 && (
+              <section>
+                <h2 className="font-mono text-xs uppercase tracking-[0.25em] text-muted mb-5">
+                  Key features
+                </h2>
+                <ul className="space-y-3.5">
+                  {project.details.keyFeatures.map((feature, i) => (
+                    <li
+                      key={i}
+                      className="text-sm text-muted leading-relaxed pl-5 relative before:content-['—'] before:absolute before:left-0 before:text-muted/50"
+                    >
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )}
         </div>
       )}
     </div>

@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" font-family="ui-monospace, 'JetBrains Mono', Menlo, monospace">
+  <defs>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="1.2" cy="1.2" r="1.2" fill="#2a2a26"/>
+    </pattern>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6f6f66"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="1000" fill="#141412"/>
+  <rect width="1600" height="1000" fill="url(#dots)"/>
+
+  <text x="120" y="130" font-size="26" fill="#9ece6a">// core shopping recsys</text>
+  <text x="120" y="180" font-size="20" fill="#6f6f66">two-tower retrieval → deep ranking, as a modular framework</text>
+
+  <!-- user tower -->
+  <g transform="translate(200,280)">
+    <rect width="300" height="90" rx="10" fill="#1b1b18" stroke="#3a3a35" stroke-width="2"/>
+    <text x="150" y="55" font-size="21" fill="#d8d5ca" text-anchor="middle">USER FEATURES</text>
+  </g>
+  <g transform="translate(230,410)">
+    <rect width="240" height="150" rx="10" fill="#1b1b18" stroke="#9ece6a" stroke-width="2.5"/>
+    <text x="120" y="60" font-size="21" fill="#9ece6a" text-anchor="middle">USER TOWER</text>
+    <text x="120" y="95" font-size="16" fill="#6f6f66" text-anchor="middle">DNN · seq-agg</text>
+    <text x="120" y="123" font-size="16" fill="#6f6f66" text-anchor="middle">embedding u</text>
+  </g>
+
+  <!-- item tower -->
+  <g transform="translate(700,280)">
+    <rect width="300" height="90" rx="10" fill="#1b1b18" stroke="#3a3a35" stroke-width="2"/>
+    <text x="150" y="55" font-size="21" fill="#d8d5ca" text-anchor="middle">ITEM FEATURES</text>
+  </g>
+  <g transform="translate(730,410)">
+    <rect width="240" height="150" rx="10" fill="#1b1b18" stroke="#9ece6a" stroke-width="2.5"/>
+    <text x="120" y="60" font-size="21" fill="#9ece6a" text-anchor="middle">ITEM TOWER</text>
+    <text x="120" y="95" font-size="16" fill="#6f6f66" text-anchor="middle">DCN-v2 · BERT feats</text>
+    <text x="120" y="123" font-size="16" fill="#6f6f66" text-anchor="middle">embedding v</text>
+  </g>
+
+  <!-- dot product + ANN -->
+  <circle cx="600" cy="660" r="42" fill="#1b1b18" stroke="#d8d5ca" stroke-width="2.5"/>
+  <text x="600" y="672" font-size="30" fill="#d8d5ca" text-anchor="middle">·</text>
+  <text x="600" y="740" font-size="17" fill="#6f6f66" text-anchor="middle">u · v similarity</text>
+
+  <g transform="translate(1090,600)">
+    <rect width="330" height="120" rx="10" fill="#1b1b18" stroke="#3a3a35" stroke-width="2"/>
+    <text x="165" y="52" font-size="21" fill="#d8d5ca" text-anchor="middle">ANN RETRIEVAL</text>
+    <text x="165" y="88" font-size="16" fill="#6f6f66" text-anchor="middle">FAISS · top-K of 10M items</text>
+  </g>
+
+  <g transform="translate(1090,300)">
+    <rect width="330" height="180" rx="10" fill="#1b1b18" stroke="#3a3a35" stroke-width="2"/>
+    <text x="165" y="55" font-size="21" fill="#d8d5ca" text-anchor="middle">RANKERS</text>
+    <text x="165" y="95" font-size="16" fill="#6f6f66" text-anchor="middle">DIN · DIEN · DCN-v2 · BST</text>
+    <text x="165" y="127" font-size="16" fill="#6f6f66" text-anchor="middle">XGBoost / LightGBM</text>
+    <text x="165" y="159" font-size="16" fill="#6f6f66" text-anchor="middle">AUC · NDCG · gAUC</text>
+  </g>
+
+  <line x1="350" y1="370" x2="350" y2="402" stroke="#6f6f66" stroke-width="2.5" marker-end="url(#arr)"/>
+  <line x1="850" y1="370" x2="850" y2="402" stroke="#6f6f66" stroke-width="2.5" marker-end="url(#arr)"/>
+  <line x1="380" y1="560" x2="570" y2="640" stroke="#6f6f66" stroke-width="2.5" marker-end="url(#arr)"/>
+  <line x1="820" y1="560" x2="632" y2="640" stroke="#6f6f66" stroke-width="2.5" marker-end="url(#arr)"/>
+  <line x1="642" y1="660" x2="1082" y2="660" stroke="#6f6f66" stroke-width="2.5" marker-end="url(#arr)"/>
+  <line x1="1255" y1="600" x2="1255" y2="488" stroke="#6f6f66" stroke-width="2.5" marker-end="url(#arr)"/>
+
+  <text x="120" y="880" font-size="22" fill="#6f6f66">retrieval + ranking with reusable layers: attention · cross-net · FM · SENet</text>
+  <text x="1480" y="880" font-size="20" fill="#5a5a52" text-anchor="end">PYTORCH · TF · FAISS</text>
+</svg>

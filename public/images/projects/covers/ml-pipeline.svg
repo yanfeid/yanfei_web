@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" font-family="ui-monospace, 'JetBrains Mono', Menlo, monospace">
+  <defs>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="1.2" cy="1.2" r="1.2" fill="#2a2a26"/>
+    </pattern>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6f6f66"/>
+    </marker>
+  </defs>
+  <rect width="1600" height="1000" fill="#141412"/>
+  <rect width="1600" height="1000" fill="url(#dots)"/>
+
+  <text x="120" y="130" font-size="26" fill="#9ece6a">// ml pipeline agent</text>
+  <text x="120" y="180" font-size="20" fill="#6f6f66">research notebook in → production DAG out</text>
+
+  <!-- messy notebook -->
+  <g transform="translate(140,300)">
+    <rect width="340" height="330" rx="10" fill="#1b1b18" stroke="#3a3a35" stroke-width="2"/>
+    <text x="30" y="50" font-size="19" fill="#d8d5ca">notebook.ipynb</text>
+    <line x1="30" y1="70" x2="310" y2="70" stroke="#2e2e2a" stroke-width="2"/>
+    <text x="30" y="110" font-size="16" fill="#6f6f66"># load stuff</text>
+    <text x="30" y="145" font-size="16" fill="#6f6f66">df = pd.read_csv(...)</text>
+    <text x="30" y="180" font-size="16" fill="#6f6f66"># TODO clean later</text>
+    <text x="30" y="215" font-size="16" fill="#6f6f66">train_v2_final_FIX()</text>
+    <text x="30" y="250" font-size="16" fill="#6f6f66">eval??</text>
+    <text x="30" y="290" font-size="16" fill="#7e2f2b"># works on my machine</text>
+  </g>
+
+  <!-- agent -->
+  <g transform="translate(600,400)">
+    <rect width="280" height="140" rx="10" fill="#1b1b18" stroke="#9ece6a" stroke-width="2.5"/>
+    <text x="140" y="60" font-size="22" fill="#9ece6a" text-anchor="middle">LLM AGENT</text>
+    <text x="140" y="98" font-size="16" fill="#6f6f66" text-anchor="middle">detect components · I/O</text>
+  </g>
+
+  <!-- DAG -->
+  <g transform="translate(1010,260)" stroke-width="2.5">
+    <circle cx="60" cy="80" r="34" fill="#1b1b18" stroke="#3a3a35"/>
+    <text x="60" y="87" font-size="15" fill="#d8d5ca" text-anchor="middle">load</text>
+    <circle cx="230" cy="80" r="34" fill="#1b1b18" stroke="#3a3a35"/>
+    <text x="230" y="87" font-size="15" fill="#d8d5ca" text-anchor="middle">prep</text>
+    <circle cx="145" cy="230" r="34" fill="#1b1b18" stroke="#3a3a35"/>
+    <text x="145" y="237" font-size="15" fill="#d8d5ca" text-anchor="middle">feat</text>
+    <circle cx="320" cy="230" r="34" fill="#1b1b18" stroke="#9ece6a"/>
+    <text x="320" y="237" font-size="15" fill="#9ece6a" text-anchor="middle">train</text>
+    <circle cx="230" cy="380" r="34" fill="#1b1b18" stroke="#3a3a35"/>
+    <text x="230" y="387" font-size="15" fill="#d8d5ca" text-anchor="middle">eval</text>
+    <circle cx="400" cy="380" r="34" fill="#1b1b18" stroke="#3a3a35"/>
+    <text x="400" y="387" font-size="15" fill="#d8d5ca" text-anchor="middle">ship</text>
+    <line x1="94" y1="80" x2="188" y2="80" stroke="#6f6f66" marker-end="url(#arr)"/>
+    <line x1="212" y1="110" x2="165" y2="198" stroke="#6f6f66" marker-end="url(#arr)"/>
+    <line x1="248" y1="110" x2="302" y2="198" stroke="#6f6f66" marker-end="url(#arr)"/>
+    <line x1="170" y1="255" x2="212" y2="352" stroke="#6f6f66" marker-end="url(#arr)"/>
+    <line x1="300" y1="260" x2="252" y2="352" stroke="#6f6f66" marker-end="url(#arr)"/>
+    <line x1="264" y1="380" x2="358" y2="380" stroke="#6f6f66" marker-end="url(#arr)"/>
+  </g>
+  <text x="1240" y="720" font-size="18" fill="#6f6f66" text-anchor="middle">pipeline.yaml · deps resolved</text>
+
+  <line x1="480" y1="470" x2="592" y2="470" stroke="#6f6f66" stroke-width="2.5" marker-end="url(#arr)"/>
+  <line x1="880" y1="470" x2="992" y2="470" stroke="#6f6f66" stroke-width="2.5" marker-end="url(#arr)"/>
+
+  <text x="120" y="880" font-size="22" fill="#6f6f66">human-in-the-loop verify · optional PR submission</text>
+  <text x="1480" y="880" font-size="20" fill="#5a5a52" text-anchor="end">PYTHON · LLM · YAML</text>
+</svg>

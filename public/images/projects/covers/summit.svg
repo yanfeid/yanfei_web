@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" font-family="ui-monospace, 'JetBrains Mono', Menlo, monospace">
+  <defs>
+    <pattern id="dots" width="28" height="28" patternUnits="userSpaceOnUse">
+      <circle cx="1.2" cy="1.2" r="1.2" fill="#2a2a26"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="1000" fill="#141412"/>
+  <rect width="1600" height="1000" fill="url(#dots)"/>
+
+  <text x="120" y="130" font-size="26" fill="#9ece6a">// summit</text>
+  <text x="120" y="180" font-size="20" fill="#6f6f66">a spatio-temporal recorder for mountaineers</text>
+
+  <!-- phone -->
+  <g transform="translate(560,120)">
+    <rect x="-14" y="-14" width="418" height="848" rx="58" fill="#0d0d0c" stroke="#3a3a35" stroke-width="2.5"/>
+    <rect width="390" height="820" rx="46" fill="#191917"/>
+    <rect x="140" y="16" width="110" height="26" rx="13" fill="#0d0d0c"/>
+
+    <!-- app header -->
+    <text x="32" y="92" font-size="15" fill="#9ece6a">● RECORDING · 06:42:18</text>
+    <text x="32" y="140" font-size="30" fill="#ececea">Haba Snow Mtn</text>
+    <text x="32" y="172" font-size="16" fill="#8f8f88">5,396 m · Yunnan · attempt #1</text>
+
+    <!-- track map card -->
+    <g transform="translate(32,200)">
+      <rect width="326" height="230" rx="14" fill="#101010" stroke="#2b2b27" stroke-width="1.5"/>
+      <!-- contour hints -->
+      <path d="M 20 190 Q 90 150 130 165 T 300 120" stroke="#242420" stroke-width="1.5" fill="none"/>
+      <path d="M 10 150 Q 100 100 170 120 T 310 70" stroke="#242420" stroke-width="1.5" fill="none"/>
+      <!-- gps track -->
+      <path d="M 30 200 C 80 185, 95 150, 140 140 S 220 105, 245 70 S 280 45, 292 38"
+            stroke="#9ece6a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <circle cx="30" cy="200" r="6" fill="#191917" stroke="#8f8f88" stroke-width="2.5"/>
+      <circle cx="292" cy="38" r="7" fill="#9ece6a"/>
+      <text x="262" y="24" font-size="12" fill="#9ece6a">SUMMIT</text>
+      <!-- photo pins -->
+      <circle cx="140" cy="140" r="5" fill="#d8d5ca"/>
+      <circle cx="245" cy="70" r="5" fill="#d8d5ca"/>
+    </g>
+
+    <!-- altitude curve card -->
+    <g transform="translate(32,448)">
+      <rect width="326" height="150" rx="14" fill="#101010" stroke="#2b2b27" stroke-width="1.5"/>
+      <text x="18" y="30" font-size="13" fill="#8f8f88">ALTITUDE</text>
+      <path d="M 18 118 L 60 112 L 95 96 L 130 92 L 160 74 L 200 62 L 235 48 L 270 34 L 306 26"
+            stroke="#d8d5ca" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M 18 118 L 60 112 L 95 96 L 130 92 L 160 74 L 200 62 L 235 48 L 270 34 L 306 26 L 306 132 L 18 132 Z"
+            fill="#d8d5ca" opacity="0.07"/>
+      <text x="18" y="132" font-size="11" fill="#5a5a52">2,980m</text>
+      <text x="306" y="20" font-size="11" fill="#5a5a52" text-anchor="end">5,396m</text>
+    </g>
+
+    <!-- stats row -->
+    <g transform="translate(32,622)" font-size="13" fill="#8f8f88">
+      <text x="0" y="0">DIST</text>
+      <text x="0" y="26" font-size="19" fill="#ececea">14.2km</text>
+      <text x="115" y="0">ASCENT</text>
+      <text x="115" y="26" font-size="19" fill="#ececea">+2,416m</text>
+      <text x="240" y="0">PHOTOS</text>
+      <text x="240" y="26" font-size="19" fill="#ececea">23</text>
+    </g>
+
+    <!-- peak community row -->
+    <g transform="translate(32,690)">
+      <rect width="326" height="76" rx="14" fill="#101010" stroke="#2b2b27" stroke-width="1.5"/>
+      <circle cx="36" cy="38" r="16" fill="#2b2b27"/>
+      <circle cx="62" cy="38" r="16" fill="#33332e"/>
+      <circle cx="88" cy="38" r="16" fill="#3c3c36"/>
+      <text x="118" y="34" font-size="13" fill="#ececea">127 climbed this peak</text>
+      <text x="118" y="56" font-size="13" fill="#9ece6a">14 planning · join →</text>
+    </g>
+  </g>
+
+  <!-- callouts -->
+  <g font-size="17" fill="#8f8f88">
+    <line x1="1010" y1="330" x2="1120" y2="330" stroke="#3f4f35" stroke-width="2" stroke-dasharray="6 6"/>
+    <text x="1140" y="322" fill="#9ece6a">auto-recorded GPS track</text>
+    <text x="1140" y="350">photos pinned by location</text>
+
+    <line x1="1010" y1="560" x2="1120" y2="560" stroke="#3f4f35" stroke-width="2" stroke-dasharray="6 6"/>
+    <text x="1140" y="552" fill="#9ece6a">altitude profile</text>
+    <text x="1140" y="580">generated on completion</text>
+
+    <line x1="1010" y1="800" x2="1120" y2="800" stroke="#3f4f35" stroke-width="2" stroke-dasharray="6 6"/>
+    <text x="1140" y="792" fill="#9ece6a">peaks as social nodes</text>
+    <text x="1140" y="820">find partners for the next one</text>
+  </g>
+
+  <text x="120" y="920" font-size="20" fill="#5a5a52">REACT NATIVE · EXPO · FASTIFY · POSTGRES</text>
+</svg>

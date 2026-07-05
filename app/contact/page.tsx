@@ -1,136 +1,88 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Github, Linkedin, Mail, MapPin, FileText } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import PageHeader from "@/components/PageHeader";
+import Reveal from "@/components/Reveal";
 
-const contactInfo = [
+const channels = [
   {
-    icon: Mail,
     label: "Email",
     value: "yanfeidai0811@gmail.com",
     href: "mailto:yanfeidai0811@gmail.com",
+    note: "Fastest way to reach me",
   },
   {
-    icon: Linkedin,
     label: "LinkedIn",
     value: "linkedin.com/in/yanfeidai",
     href: "https://www.linkedin.com/in/yanfeidai/",
+    note: "Work history & endorsements",
   },
   {
-    icon: Github,
     label: "GitHub",
     value: "github.com/yanfeid",
     href: "https://github.com/yanfeid",
-  },
-  {
-    icon: MapPin,
-    label: "Location",
-    value: "San Francisco Bay Area, CA",
-    href: null,
+    note: "Code, experiments, templates",
   },
 ];
 
 export default function ContactPage() {
   return (
-    <div className="max-w-4xl mx-auto px-6 py-16">
-      <motion.h1
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-4xl md:text-5xl font-bold text-center mb-4"
-      >
-        Get in Touch
-      </motion.h1>
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1 }}
-        className="text-muted text-center mb-16 max-w-2xl mx-auto"
-      >
-        I&apos;m always open to discussing new opportunities, interesting
-        projects, or just connecting with fellow engineers.
-      </motion.p>
+    <div className="max-w-3xl mx-auto px-6 py-16">
+      <PageHeader
+        overline="fig. 07 — correspondence"
+        title={
+          <>
+            Say <em className="font-serif italic">hello</em>
+          </>
+        }
+        lede="Open to conversations about ML systems, new opportunities, or trail recommendations. I read everything."
+      />
 
-      <div className="grid md:grid-cols-2 gap-6">
-        {contactInfo.map((info, index) => (
-          <motion.div
-            key={info.label}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 + index * 0.1 }}
-          >
-            {info.href ? (
-              <Link
-                href={info.href}
-                target={info.href.startsWith("mailto:") ? undefined : "_blank"}
-                rel={
-                  info.href.startsWith("mailto:")
-                    ? undefined
-                    : "noopener noreferrer"
-                }
-                className="group flex items-center gap-4 p-6 bg-card border border-border rounded-xl hover:border-accent transition-all duration-300"
-              >
-                <div className="p-3 bg-background rounded-lg border border-border group-hover:border-accent transition-colors">
-                  <info.icon
-                    size={24}
-                    className="text-muted group-hover:text-accent transition-colors"
-                  />
-                </div>
-                <div>
-                  <p className="text-sm text-muted">{info.label}</p>
-                  <p className="font-medium group-hover:text-accent transition-colors">
-                    {info.value}
-                  </p>
-                </div>
-              </Link>
-            ) : (
-              <div className="flex items-center gap-4 p-6 bg-card border border-border rounded-xl">
-                <div className="p-3 bg-background rounded-lg border border-border">
-                  <info.icon size={24} className="text-muted" />
-                </div>
-                <div>
-                  <p className="text-sm text-muted">{info.label}</p>
-                  <p className="font-medium">{info.value}</p>
-                </div>
-              </div>
-            )}
-          </motion.div>
+      <div>
+        {channels.map((c, i) => (
+          <Reveal inView delay={i * 0.08} key={c.label}>
+            <Link
+              href={c.href}
+              target={c.href.startsWith("mailto:") ? undefined : "_blank"}
+              rel={
+                c.href.startsWith("mailto:")
+                  ? undefined
+                  : "noopener noreferrer"
+              }
+              className="group grid grid-cols-[110px_1fr_auto] items-baseline gap-x-6 border-t border-border py-6 last:border-b transition-colors hover:bg-card/50 -mx-4 px-4 rounded-sm"
+            >
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+                {c.label}
+              </span>
+              <span className="min-w-0">
+                <span className="block truncate text-lg group-hover:translate-x-1 transition-transform duration-300">
+                  {c.value}
+                </span>
+                <span className="block text-sm text-muted mt-0.5">
+                  {c.note}
+                </span>
+              </span>
+              <ArrowUpRight
+                size={18}
+                className="text-muted opacity-0 -translate-x-1 translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 self-center"
+              />
+            </Link>
+          </Reveal>
         ))}
       </div>
 
-      {/* Resume CTA */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6 }}
-        className="mt-12 text-center"
-      >
-        <Link
-          href="/resume.pdf"
-          target="_blank"
-          className="inline-flex items-center gap-3 px-8 py-4 bg-accent text-white rounded-xl font-medium hover:bg-accent/90 transition-colors"
-        >
-          <FileText size={20} />
-          Download Resume
-        </Link>
-      </motion.div>
-
-      {/* Open to work message */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.7 }}
-        className="mt-16 p-8 bg-card border border-border rounded-xl text-center"
-      >
-        <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-500/10 text-green-400 rounded-full text-sm font-mono mb-4">
-          <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-          Open to opportunities
+      <Reveal inView delay={0.4}>
+        <div className="mt-16 flex flex-wrap items-center justify-between gap-4">
+          <p className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-muted">
+            <span className="h-1.5 w-1.5 rounded-full bg-terminal/80 animate-pulse" />
+            open to opportunities
+          </p>
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted/70">
+            San Jose, CA
+          </p>
         </div>
-        <p className="text-muted max-w-lg mx-auto">
-          Currently exploring new opportunities in machine learning and AI. If
-          you&apos;re working on something interesting, I&apos;d love to hear about it!
-        </p>
-      </motion.div>
+      </Reveal>
     </div>
   );
 }

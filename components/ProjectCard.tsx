@@ -1,66 +1,77 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { Project } from "@/data/projects";
+import Reveal from "./Reveal";
 
 interface ProjectCardProps {
   project: Project;
   index: number;
 }
 
+/** Procedural cover for projects without a screenshot — dotted field + mono index. */
+function GeneratedCover({ project, index }: ProjectCardProps) {
+  return (
+    <div className="dots-bg relative flex h-full w-full items-center justify-center bg-card">
+      <span className="absolute left-5 top-4 font-mono text-xs text-terminal/80">
+        [{String(index + 1).padStart(2, "0")}]
+      </span>
+      <p className="max-w-[80%] text-center font-mono text-lg text-muted transition-colors duration-500 group-hover:text-foreground">
+        {project.title}
+      </p>
+      <span className="absolute bottom-4 right-5 font-mono text-[10px] uppercase tracking-[0.2em] text-muted/50">
+        {project.technologies[0]}
+      </span>
+    </div>
+  );
+}
+
 export default function ProjectCard({ project, index }: ProjectCardProps) {
   return (
-    <Link href={`/projects/${project.id}`}>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.4, delay: index * 0.1 }}
-        whileHover={{ y: -5 }}
-        className="group bg-card border border-border rounded-xl p-6 flex flex-col h-full hover:border-accent transition-all duration-300 cursor-pointer"
+    <Reveal inView delay={(index % 2) * 0.1} className="h-full">
+      <Link
+        href={`/projects/${project.id}`}
+        className="group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card/40 transition-colors hover:bg-card hover:border-muted/40"
       >
-        {project.featured && (
-          <span className="inline-block px-2 py-1 text-xs font-mono bg-accent/10 text-accent rounded mb-4 w-fit">
-            Featured
-          </span>
-        )}
-
-        <h3 className="text-xl font-bold mb-3 group-hover:text-accent transition-colors">
-          {project.title}
-        </h3>
-
-        <p className="text-muted text-sm leading-relaxed mb-4 flex-grow">
-          {project.description}
-        </p>
-
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.technologies.slice(0, 4).map((tech) => (
-            <span
-              key={tech}
-              className="px-2 py-1 text-xs font-mono bg-background rounded border border-border"
-            >
-              {tech}
-            </span>
-          ))}
-          {project.technologies.length > 4 && (
-            <span className="px-2 py-1 text-xs font-mono text-muted">
-              +{project.technologies.length - 4}
-            </span>
+        {/* Cover */}
+        <div className="relative aspect-[16/10] overflow-hidden border-b border-border">
+          {project.imageUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={project.imageUrl}
+              alt={`${project.title} cover`}
+              loading="lazy"
+              className="h-full w-full object-cover grayscale-[0.35] transition-all duration-700 group-hover:grayscale-0 group-hover:scale-[1.03]"
+            />
+          ) : (
+            <GeneratedCover project={project} index={index} />
           )}
         </div>
 
-        <div className="flex items-center justify-between pt-4 border-t border-border">
-          <span className="text-sm text-muted group-hover:text-accent transition-colors">
-            View Details
-          </span>
-          <ArrowRight
-            size={16}
-            className="text-muted group-hover:text-accent group-hover:translate-x-1 transition-all"
-          />
+        {/* Body */}
+        <div className="flex flex-grow flex-col p-6">
+          <div className="mb-3 flex items-center justify-between">
+            <h3 className="text-xl font-medium tracking-tight">
+              {project.title}
+            </h3>
+            <ArrowUpRight
+              size={18}
+              className="shrink-0 text-muted opacity-0 -translate-x-1 translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0"
+            />
+          </div>
+
+          <p className="mb-5 flex-grow text-sm leading-relaxed text-muted">
+            {project.description}
+          </p>
+
+          <p className="border-t border-border pt-4 font-mono text-xs text-muted/70">
+            {project.technologies.slice(0, 4).join(" · ")}
+            {project.technologies.length > 4 &&
+              ` +${project.technologies.length - 4}`}
+          </p>
         </div>
-      </motion.div>
-    </Link>
+      </Link>
+    </Reveal>
   );
 }
