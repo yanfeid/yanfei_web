@@ -27,6 +27,7 @@ export const projects: Project[] = [
     longDescription:
       "After Mars colonization, the wealthy left Earth behind — but they still want authentic Earth goods. You run a run-down retrieval agency: accept commissions on the office computer, gear up, drive out to exclusion zones, recover sealed specimens while evading the Echo Mold, and come back to settle the books. Money, reputation, debt pressure, and three endings.",
     technologies: ["Unity", "C#", "Netcode", "Gameplay Systems", "Level Design"],
+    githubUrl: "https://github.com/DarkGameHub/BlackCommission",
     imageUrl: "/images/projects/blackcommission/office.png",
     images: [
       {
