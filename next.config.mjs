@@ -8,26 +8,26 @@ const nextConfig = {
       },
     ],
   },
-  // PRIVATE EDITION lives in its own Vercel project and is proxied in under
-  // /edition, so it ships on its own schedule and its 24 MB cutout model
-  // never lands in this repo.
+  // KEEPZINE used to be proxied in under /edition. It now lives at its own
+  // domain, so these send the old links there instead of serving the app.
   //
-  // Two rules, because the bare path and its children match differently. The
-  // destination is the project's stable domain — a per-deployment URL would
-  // break on its next deploy.
+  // A redirect, not a rewrite, on purpose: the archive lives in IndexedDB and
+  // is isolated per origin, so an app reachable from two hostnames shows the
+  // same person two different archives. One origin, always.
   //
-  // Array form runs after the filesystem, so this only works on a path the
-  // site does not already own. /projects was taken, and its [id] segment
-  // swallows every child path, which is why the app sits at /edition.
-  async rewrites() {
+  // Temporary (307) rather than permanent: a 308 is cached hard by browsers
+  // and is painful to undo. Make it permanent once the domain has settled.
+  async redirects() {
     return [
       {
         source: "/edition",
-        destination: "https://private-edition.vercel.app/edition/",
+        destination: "https://keepzine.com/",
+        permanent: false,
       },
       {
         source: "/edition/:path*",
-        destination: "https://private-edition.vercel.app/edition/:path*",
+        destination: "https://keepzine.com/",
+        permanent: false,
       },
     ];
   },
